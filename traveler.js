@@ -4,7 +4,18 @@ exports.addTransportType =  addTransportType;
 
 var cardArray;
 
-
+/**
+ * Внешняя функция, определяющая использование внутренних.
+ * Сдужит для значительного упрощения работы с API
+ *
+ * @param cadArray  -  массив JSON объектов имеющих следующий вид
+ * {
+ *  to: точка отправления
+ *  from: точка прибытия
+ *  transport: описание транспорта
+ * }
+ * @returns {Array} - строковый массив, с описанием движения
+ */
 function findWay(cadArray) {
     var routeCardsList = [];
     var first;
@@ -23,11 +34,29 @@ function findWay(cadArray) {
     return routeCardsList;
 }
 
+/**
+ * Функция добавления нового вида транспорта
+ *
+ * @param transportType - строка с названием транспорта
+ * @param options - Объект задающий описание движения на тм или ином транспорте, имеет вид
+ * {
+ *   template: '' - строка с описанием. Для корректной работы должна включать в себя фигурные скобки {{}}, в которых должно быть заключено
+ *      название объекта (будут подставлены значения)
+ *   addition: необязательные данные, котрые буду приседенены только при наличии указанного в {{}} ключа
+ * }
+ */
 function addTransportType(transportType, options) {
     transportTypes[transportType] = options;
 }
 
 
+/**
+ * Генерирует словесное описание отдельно взятого узла
+ *
+ * @param routeNode
+ * @returns {*}
+ * @private
+ */
 function _renderNote(routeNode) {
     var s;
     var workObj;
@@ -57,6 +86,12 @@ function _renderNote(routeNode) {
 
 }
 
+/**
+ * находит стартовую току
+ *
+ * @returns {*}
+ * @private
+ */
 function _getStartPoint() {
     var destinations = cardArray.map(function (point) {
         return point.to;
@@ -67,6 +102,13 @@ function _getStartPoint() {
             return cardArray[i];
 }
 
+/**
+ * сортитрует карточки
+ * (для сортировки использует ассоциативный массив)
+ * @param first - первый узел
+ * @returns {[*]} - сортированный массив
+ * @private
+ */
 function _makeRoutes(first) {
     var tmp = [];
 
@@ -85,7 +127,9 @@ function _makeRoutes(first) {
     return result;
 }
 
-
+/**
+ * предопределенные шаблоны строк
+ */
 var transportTypes = {
     'train': {
         template: "Take train {{number}} from {{from}} to {{to}}. Seat {{seat}}"

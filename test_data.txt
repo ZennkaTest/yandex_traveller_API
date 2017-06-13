@@ -1,0 +1,47 @@
+[
+  {
+    from: 'Madrid',
+    to: 'Barcelona.',
+    transport: {
+      type: 'train',
+      number: '78',
+      seat: '45B'
+    }
+  },
+  {
+    from: 'Barcelona.',
+    to: 'Minsk',
+    transport: {
+      type: 'airport bus'
+    }
+  },
+  {
+    from: 'Minsk',
+    to: 'Moscow',
+    transport: {
+      type: 'bus',
+      number: '9285-B',
+      seat: 24
+    }
+  },
+  {
+    from: 'Los Santos',
+    to: 'Las Ventures',
+    transport: {
+      type: 'JetPack',
+      cheatcode: 'ROCKETMAN'
+    }
+  },
+  {
+    from: 'Moscow',
+    to: 'Los Santos',
+    transport: {
+      type: 'plane',
+      gate: '15B',
+      number: '123B',
+      seat: '96B',
+      baggage_ticket: '435'
+    }
+  }
+
+]
